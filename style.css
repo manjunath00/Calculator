@@ -1,0 +1,20 @@
+.container {
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.display {
+    
+}
+
+.numbers__container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+}
+
+button {
+    border: none;
+    width: 100px;
+    height: 100px;
+}
