@@ -73,7 +73,6 @@ let switcher = function(e) {
 
 };
 
-
 let displayResult = function() {
     math_operation(symbol);
     console.log(first);
@@ -82,7 +81,17 @@ let displayResult = function() {
     console.log(result);
     document.querySelector('#display').textContent = '='+result;
 
-}
+};
+
+let reset = function() {
+    first = '';
+    last = '';
+    firstStatus = true;
+    lastStatus = false;
+    symbol = '';
+    document.querySelector('#display').textContent = 0;
+
+};
 
 
 document.querySelector('#one').addEventListener('click', switcher);
@@ -103,8 +112,18 @@ document.querySelector('#div').addEventListener('click', operation);
 
 document.querySelector('#equals').addEventListener('click', displayResult);
 
+document.querySelector('.on').addEventListener('click', reset);
+
+document.addEventListener('DOMContentLoaded', reset);
+
+
+
 /*
 
-When '/' is clicked
+pending
+
+1. On button functionality
+2. Backspace functionality
+3. Pointer functionality
 
 */
