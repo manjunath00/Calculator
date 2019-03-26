@@ -1,16 +1,40 @@
+
+
 .container {
     height: 600px;
     width: 600px;
     margin: 0 auto;
+    font-size: 60px;
+    font-weight: 800;
+    display: grid;
+    grid-template-areas:  'display display'
+                          'numbers ops';
+    grid-column-gap: 0;
 }
 
-.display {
-    
+.display__container {
+    display: grid;
+    /* color: white; */
+    grid-area: display;
+    width: 500px;
+    /* background-color: red; */
+    border: 1px solid black;
 }
 
 .numbers__container {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(5, 100px);
+
+    grid-area: numbers;
+}
+
+.operation__container {
+    display: grid;
+    grid-template-columns: 100px;
+    grid-template-rows: repeat(5, 100px);
+    grid-area: ops;
+
 }
 
 button {
