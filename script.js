@@ -13,30 +13,31 @@ firstStatus = true;
 
 lastStatus = false;
 
-
-
 let firstNum = function(e) {
     first += e.target.textContent;
-    console.log(first);
-    document.querySelector('#display').textContent = first;
+    document.querySelector('#display__top').textContent = first;
+
+    document.querySelector('#display__bottom').textContent = first;
     return first;
 };
 
 let secondNum = function(e) {
     last += e.target.textContent;
-    console.log(last);
+    // console.log(last);
+    document.querySelector('#display__top').textContent = first + symbol + last;
 
-    document.querySelector('#display').textContent = last;
+    document.querySelector('#display__bottom').textContent = last;
     return last;
 };
 
 let operation = function(e) {
     symbol = e.target.textContent;
-    document.querySelector('#display').textContent = symbol;
+    document.querySelector('#display__top').textContent += symbol;
+
+    document.querySelector('#display__bottom').textContent = symbol;
     firstStatus = false;
     lastStatus = true;
-    console.log(e.target.textContent);
-    // switcher(e);
+    // console.log(e.target.textContent);
 };
 
 let math_operation = function(symbol) {
@@ -44,19 +45,19 @@ let math_operation = function(symbol) {
 
     switch(symbol) {
         case '+':
-            result = parseInt(first) + parseInt(last);
+            result = Math.round((parseFloat(first) + parseFloat(last)) * 1000) / 1000;
             break;
 
         case '-':
-            result = parseInt(first) - parseInt(last);
+            result = Math.round((parseFloat(first) - parseFloat(last)) * 1000) / 1000;
             break;
 
         case '/':
-            result = parseFloat(first) / parseFloat(last);
+            result = Math.round((parseFloat(first) / parseFloat(last)) * 1000) / 1000;
             break;
 
         case 'x':
-            result = parseInt(first) * parseInt(last);
+            result = Math.round((parseFloat(first) * parseFloat(last)) * 1000) / 1000;
             break;   
     }
     // console.log(result);
@@ -75,11 +76,15 @@ let switcher = function(e) {
 
 let displayResult = function() {
     math_operation(symbol);
-    console.log(first);
-    console.log(symbol);
-    console.log(last);
-    console.log(result);
-    document.querySelector('#display').textContent = '='+result;
+    console.log('Display result ');
+    console.log(`${first} ${symbol} ${last} = ${result}`);
+   
+    document.querySelector('#display__top').textContent += '='+result;
+
+    document.querySelector('#display__bottom').textContent = '='+result;
+
+    first = result;
+    last = '';
 
 };
 
@@ -89,7 +94,10 @@ let reset = function() {
     firstStatus = true;
     lastStatus = false;
     symbol = '';
-    document.querySelector('#display').textContent = 0;
+    console.log('New session has begun');
+    document.querySelector('#display__top').textContent = 0;
+
+    document.querySelector('#display__bottom').textContent = 0;
 
 };
 
@@ -104,6 +112,8 @@ document.querySelector('#seven').addEventListener('click', switcher);
 document.querySelector('#eight').addEventListener('click', switcher);
 document.querySelector('#nine').addEventListener('click', switcher);
 document.querySelector('#zero').addEventListener('click', switcher);
+
+document.querySelector('#point').addEventListener('click', switcher);
 
 document.querySelector('#plus').addEventListener('click', operation);
 document.querySelector('#minus').addEventListener('click', operation);
@@ -120,10 +130,10 @@ document.addEventListener('DOMContentLoaded', reset);
 
 /*
 
-pending
+pending */
 
-1. On button functionality
-2. Backspace functionality
-3. Pointer functionality
+// 1. On button functionality completed
+// 2. Backspace functionality 
+// 3. Pointer functionality completed
 
-*/
+
