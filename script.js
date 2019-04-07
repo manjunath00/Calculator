@@ -3,7 +3,7 @@
 // 1. Display the number clicked
 
 // 2. Switch on the operations
-let result, last, firstStatus, lastStatus, symbol;
+let result, last, firstStatus, lastStatus, symbol, symbolStatus;
 
 first = '';
 
@@ -16,12 +16,12 @@ lastStatus = false;
 let firstNum = function(e) {
     first += e.target.textContent;
     document.querySelector('#display__top').textContent = first;
-
     document.querySelector('#display__bottom').textContent = first;
     return first;
 };
 
 let secondNum = function(e) {
+    symbolStatus = false;
     last += e.target.textContent;
     // console.log(last);
     document.querySelector('#display__top').textContent = first + symbol + last;
@@ -101,6 +101,41 @@ let reset = function() {
 
 };
 
+let removeLastLetter = function(string) {
+
+    string = string.substr(0, (string.length - 1));
+    console.log(`Modified string is ${string}`);
+    console.log(string);
+    return string;
+};
+
+let parser = function() {
+    document.querySelector('#display__top').textContent = first + symbol + last;
+};
+
+let backspace = function() {
+    
+    if(firstStatus) {
+        first = removeLastLetter(first);
+        console.log(first);
+    } else if (symbolStatus) {
+        symbol = removeLastLetter(symbol);
+        console.log(symbol);
+
+    } else if (lastStatus) {
+        last = removeLastLetter(last);
+        console.log(last);
+    }
+
+    parser();
+
+};
+
+
+
+
+
+
 
 document.querySelector('#one').addEventListener('click', switcher);
 document.querySelector('#two').addEventListener('click', switcher);
@@ -125,6 +160,8 @@ document.querySelector('#equals').addEventListener('click', displayResult);
 document.querySelector('.on').addEventListener('click', reset);
 
 document.addEventListener('DOMContentLoaded', reset);
+
+document.querySelector('#backspace').addEventListener('click', backspace);
 
 
 
